@@ -129,7 +129,7 @@ public class JItemPanel extends JPanel
 				CB[i+(count * 4)] = new JCheckBox("");
 				CB[i+(count * 4)].setBounds(280+(i*25), 2+(count*20), 21, 21);
 				CB[i+(count * 4)].setOpaque(false);
-				JOptionPane.showMessageDialog(null, binary.substring(i+(count * 4), (i+(count * 4))+1));
+				//JOptionPane.showMessageDialog(null, binary.substring(i+(count * 4), (i+(count * 4))+1));
 				if (binary.substring(i+(count * 4), (i+(count * 4))+1).equals("1"))
 				{
 					CB[i+(count * 4)].setSelected(true);
