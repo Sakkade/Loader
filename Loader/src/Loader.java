@@ -4,6 +4,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.filechooser.FileFilter;
@@ -82,12 +83,15 @@ public class Loader
 		//final ArrayList<JItemPanel> LPanelList = new ArrayList<JItemPanel>();
 		
 				
+		//-------------TestItem---------------------
+		//LItem Item = new LItem("P:\\GoldWave\\GoldWave.exe", "Goldwave");
+		//JItemPanel IPanel = new JItemPanel(Item);
+		//ApplicationList.addElement(IPanel);
+		//-------------TestItem---------------------
 		
-		LItem Item = new LItem("P:\\GoldWave\\GoldWave.exe", "Goldwave");
+		
 		//LItemList.add(Item);
-		JItemPanel IPanel = new JItemPanel(Item);
 		//LPanelList.add(IPanel);
-		ApplicationList.addElement(IPanel);
 		
 		FileWork = new IOData();
 		FileWork.Load(ApplicationList);

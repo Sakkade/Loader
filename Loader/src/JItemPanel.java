@@ -17,7 +17,7 @@ public class JItemPanel extends JPanel
 	 */
 	private static final long serialVersionUID = 1L;
 	private JCheckBox[] CB;
-	private JLabel lName, lPath, lIcon;
+	private JLabel lName, lPath, lIconRun,lIconDel;
 	private LItem Item;
 	
 	public LItem getItem() 
@@ -38,9 +38,10 @@ public class JItemPanel extends JPanel
 	public int getCPUCheck()
 	{
 		String binary = "";
-		for (int i = 2; i < this.getComponentCount()-1; i++) 
+		for (int i = 2; i < this.getComponentCount()-2; i++) 
 		{
 			Component Aktuell = this.getComponent(i);
+			JOptionPane.showMessageDialog(null, Aktuell.getClass().getSimpleName());
 			JCheckBox cb = (JCheckBox) Aktuell;
 			if (cb.isSelected()) 
 			{
@@ -157,12 +158,18 @@ public class JItemPanel extends JPanel
 			}	
 			
 		}
-		ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("Ressourcen/run.png"));
-		lIcon = new JLabel(icon);
-		lIcon.setBounds(230, 1, 40, 40);
-		lIcon.setOpaque(false);
+		ImageIcon iconRun = new ImageIcon(getClass().getClassLoader().getResource("Ressourcen/run.png"));
+		lIconRun = new JLabel(iconRun);
+		lIconRun.setBounds(230, 0, 35, 35);
+		lIconRun.setOpaque(false);
+		
+		ImageIcon iconDel = new ImageIcon(getClass().getClassLoader().getResource("Ressourcen/delete2.png"));
+		lIconDel = new JLabel(iconDel);
+		lIconDel.setBounds(195, 5, 25, 25);
+		lIconDel.setOpaque(false);
 				
-		this.add(lIcon);
+		this.add(lIconRun);
+		this.add(lIconDel);
 		this.repaint();
 	}
 	

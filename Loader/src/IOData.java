@@ -13,20 +13,6 @@ public class IOData
 	private int AWNumbCoresB;
 	private File f;
 	
-	/*public static void main(String[] args) 
-	{
-		IOData a = new IOData();
-		try
-		{
-			a.InsertItem("Test1\n");
-		}
-		catch (Exception e)
-		{
-			System.out.println("Fehler!");
-			JOptionPane.showMessageDialog(null, "Fehler");
-		}
-	}*/
-	
 	public IOData() 
 	{
 		f = new File("awconfig.cfg");
@@ -114,9 +100,9 @@ public class IOData
 	public String BuildDataString()
 	{
 		String ret = new String();
-		ret = AWName + "|" + AWPath + "|";
-		for (int i = 0; i < Runtime.getRuntime().availableProcessors(); i++)
-			ret += AWNumbCores[i];
+		ret = AWName + "|" + AWPath + "|" + AWNumbCoresB;
+		//for (int i = 0; i < Runtime.getRuntime().availableProcessors(); i++)
+		//	ret += AWNumbCoresB[i];
 		ret += '\n';
 		return ret;
 	}
@@ -161,9 +147,22 @@ public class IOData
 	{
 		if (f.exists())
 		{
-			for (int i = 0; i < AppList.indexOf(AppList.lastElement()); i++) 
+			
+			for (int i = 0; i < AppList.size(); i++) 
 			{
 				LItem Item = AppList.get(i).getItem();
+				AppList.get(i).setNewCPU();
+				AWName = Item.getName();
+				AWPath = Item.getPath();
+				AWNumbCoresB = Item.getNumbOfCores();
+				try
+				{
+					InsertItem(BuildDataString());
+				}
+				catch (Exception e)
+				{
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -171,7 +170,7 @@ public class IOData
 	public void InsertItem(String item) throws IOException
 	{
 		String test = null, s1 = null, s2 = null;
-		char t = 0;
+		char t = 'n';
 		if (f.exists())
 		{
 			BufferedReader br = new BufferedReader(new FileReader(f));
@@ -179,15 +178,17 @@ public class IOData
 			{
 				s1 = item.substring(0, item.indexOf('|'));
 				s2 = test.substring(0, test.indexOf('|'));
-				if (s1 == s2)
+				JOptionPane.showMessageDialog(null, s1+'\n'+s2+'\n'+test+'\n'+item);
+				if (s1.equals(s2))
 				{	//Selber Anwedungsname
-					if (item != test)
+					if (!item.equals(test))
 					{	//Gesamter Eintrag ist nicht identisch
 						t = 'u';
 					}
 					else
 					{	//Einträge absolut identisch
 						t = 'x';
+						break;
 					}
 				}
 				else
@@ -196,7 +197,7 @@ public class IOData
 				}
 			}
 			br.close();
-			
+			JOptionPane.showMessageDialog(null, t);
 			switch (t)
 			{
 			case 'u'://update der Zeile
